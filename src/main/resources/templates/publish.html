@@ -1,10 +1,11 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Traveller Blog</title>
+    <title>发布 - Traveller Blog</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <link rel="stylesheet" href="css/bootstrap.min.css"/>
     <link rel="stylesheet" href="css/bootstrap-theme.min.css"/>
+    <link rel="stylesheet" href="css/blog.css"/>
     <script src="js/bootstrap.min.js" type="application/javascript"></script>
 </head>
 <body>
@@ -42,6 +43,45 @@
             </ul>
         </div>
     </div>
+
 </nav>
+<div class="container-fluid main">
+    <div class="row">
+        <div class="col-lg-9 col-md-12 col-sm-12 col-xs-12">
+            <h2><span class="glyphicon glyphicon-plus" aria-hidden="true"></span>发布</h2>
+            <hr>
+
+            <form action="/publish" method="post">
+                <div class="form-group">
+                    <label for="title">标题(简单扼要)</label>
+                    <input type="text" class="form-control" th:value="${title}" id="title" name="title" placeholder="标题....">
+                </div>
+                <div class="form-group">
+                    <label for="description">内容(请参照右侧提示)</label>
+                    <textarea name="description" id="description" th:value="${description}" class="form-control" cols="30" rows="10"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="tag">添加标签</label>
+                    <input type="text" class="form-control" th:value="${tag}" id="tag" name="tag" placeholder="添加标签，以逗号分隔">
+                </div>
+
+                <div class="container-fluid main">
+                    <div class="row">
+                        <div class="alert alert-danger col-lg-9 col-md-12 col-sm-12 col-xs-12" th:text="${error}" th:if="${error != null}"></div>
+                        <div class="col-lg-3 col-md-12 col-sm-12 col-xs-12">
+                            <button type="submit" class="btn btn-success btn-publish">发布</button>
+                        </div>
+
+                    </div></div>
+
+            </form>
+        </div>
+        <div class="col-lg-3 col-md-12 col-sm-12 col-xs-12"></div>
+        <h3>内容发布指南</h3>
+        • 问题标题: 请用精简的语言描述您发布的内容，不超过25字<br>
+        • 内容补充：详细补充您的标题内容，并确保问题描述清晰直观，并提供一些相关资料<br>
+        • 选择标签：选择一个或者多个合适的标签，用逗号分隔，每个标签不超过10个字<br>
+    </div>
+</div>
 </body>
 </html>
